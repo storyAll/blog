@@ -1,10 +1,13 @@
-git 鏈湴鎻愪氦
+git 提交
 
-readme鏂囦欢
+readme必须有
 
-1.淇敼鏂囦欢
+1.修改
 2.git add file /doctionary
-3.git commit -m '娉ㄩ噴'
-4.git push  榛樿master/branch
+<<<<<<< HEAD
+3.git commit -m '注释'
+4.git push  默认master/branch
 
-//娴嬭瘯pull鍛戒护
+5.git log 查看历史版本编码 取前6位
+6.git checkout  分支名(  6位编码  即可恢复历史版本 /切换分支 master)
+>>>>>>> 80efb2
