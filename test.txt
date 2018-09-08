@@ -1,13 +1,16 @@
-git �ύ
+git 提交
 
-readme������
+readme必须有
 
-1.�޸�
+1.修改
 2.git add file /doctionary
 <<<<<<< HEAD
-3.git commit -m 'ע��'
-4.git push  Ĭ��master/branch
+3.git commit -m '注释'
+4.git push  默认master/branch
 
-5.git log �鿴��ʷ�汾���� ȡǰ6λ
-6.git checkout  ��֧��(  6λ����  ���ɻָ���ʷ�汾 /�л���֧ master)
+5.git log 查看历史版本编码 取前6位
+6.git checkout  分支名(  6位编码  即可恢复历史版本 /切换分支 master)
 >>>>>>> 80efb2
+
+7.git checkout -b '分支名称' //新建分支并切换到该分支
+8.git branch 分支名称' 创建分支
