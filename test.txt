@@ -1,8 +1,10 @@
-git 本地提交
+git 鏈湴鎻愪氦
 
-readme文件
+readme鏂囦欢
 
-1.修改文件
+1.淇敼鏂囦欢
 2.git add file /doctionary
-3.git commit -m '注释'
-4.git push  默认master/branch
+3.git commit -m '娉ㄩ噴'
+4.git push  榛樿master/branch
+
+//娴嬭瘯pull鍛戒护
