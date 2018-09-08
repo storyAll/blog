@@ -6,3 +6,6 @@ readme文件
 2.git add file /doctionary
 3.git commit -m '注释'
 4.git push  默认master/branch
+
+5.git log 查看历史版本编码 取前6位
+6.git checkout 6位编码  即可恢复历史版本
