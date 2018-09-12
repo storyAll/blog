@@ -1,0 +1,1 @@
+export const UPDATE_SLIDE_LEFT = 'UPDATE_SLIDE_LEFT'

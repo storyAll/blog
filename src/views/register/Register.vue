@@ -1,27 +1,25 @@
 <template>
-  <div class="pages ">
+  <div class="pages">
     <div class="container">
       <div class="pages-head">
-        <h3>
-          登录
-        </h3>
+        <h3>注册</h3>
       </div>
-      <div class="login">
+      <div class="register">
         <div class="row">
           <form class="col s12">
             <div class="input-field">
-              <input type="text" class="validate" placeholder="用户">
+              <input type="text" class="validate" placeholder="用户名" required>
             </div>
             <div class="input-field">
-              <input type="password" class="validate" placeholder="密码">
+              <input type="email" placeholder="邮箱" class="validate" required>
             </div>
             <div class="input-field">
-                <div class="rf">
-                  <input type="checkbox" class="remember" id="remember"><label for="remember">记住密码</label>
-                  <a class="forget" href="javascript:void 0">忘记密码 ?</a>
-                </div>
+              <input type="password" placeholder="密码" class="validate" required>
             </div>
-            <a href="javascript:void 0" class="btn btn-success">登录</a>
+            <div class="input-field">
+              <input type="password" placeholder="确认密码" class="validate" required>
+            </div>
+            <div class="btn btn-danger">注册</div>
           </form>
         </div>
       </div>
@@ -31,7 +29,7 @@
 
 <script>
 export default {
-  name: 'Login'
+  name: 'Register'
 }
 </script>
 
@@ -44,8 +42,7 @@ export default {
     position: absolute;
     margin: 0 auto;
     padding: 0;
-    background: url("../../assets/login.jpg") no-repeat;
-    opacity: .8;
+    background: url("../../assets/register.jpg") no-repeat;
     background-size: cover;
     filter: blur(0px);
     .container{
@@ -54,7 +51,7 @@ export default {
       h3{
         color: @font-color;
       }
-      .login{
+      .register{
         .input-field{
           margin: 20px 0;
         }
