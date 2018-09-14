@@ -36,49 +36,45 @@ export default {
 </script>
 
 <style scoped lang="less">
-  @font-color:#fff;
-  @width:70%;
+  @width:60%;
   .pages{
     width: 100%;
     height: 100%;
     position: absolute;
     margin: 0 auto;
-    padding: 0;
-    background: url("../../assets/login.jpg") no-repeat;
-    opacity: .8;
+    padding: 8vh 0;
+    /*background: url("../../assets/login.jpg") no-repeat;*/
     background-size: cover;
     filter: blur(0px);
     .container{
       margin-top: 60px;
       opacity: 1;
       h3{
-        color: @font-color;
+        color: #111;
       }
       .login{
         .input-field{
-          margin: 20px 0;
+          margin: 30px 0;
         }
         input.validate{
+          height: 35px;
           width: @width;
-          padding: 5px 10px;
-          border-radius: 5px;
-          border: none;
-          outline: none;
-        }
-        a,label{
-          color: @font-color;
+          padding: 0 10px;
         }
         .btn{
           width: @width;
         }
         .remember{
           position: relative;
-          top:5px;
+         margin-right: 5px;
         }
         .rf{
           display: inline-block;
-          width: 70%;
-          /*line-height: 30px;*/
+          width: @width;
+          a,label{
+            color: #111;
+            font-weight: normal;
+          }
           input,label{
             float: left;
           }

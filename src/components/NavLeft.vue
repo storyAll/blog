@@ -1,77 +1,65 @@
 <template>
-  <div ref="slideLeft" class="side-nav-panel-left nav-left nav-lef-default">
-    <ul id="slide-out-left" class="side-nav side-nav-panel collapsible">
+  <div ref="slideLeft" class="side-nav-panel-left nav-left"
+       :class="slideLeft==null?'':slideLeft?'nav-left-show':'nav-left-hide'">
+    <ul @click="slide" id="slide-out-left" class="side-nav side-nav-panel collapsible">
       <li class="profil">
         <img src="../assets/login.jpg" alt="">
         <h2>张冲</h2>
         <h6>前端开发</h6>
       </li>
       <router-link tag="li" to="/home">
-        <a>主页</a>
+        <a><i class="fa fa-home"></i>主页</a>
       </router-link>
       <router-link tag="li" to="/blog">
-        <a>博客</a>
+        <a><i class="fa fa-bold"></i>博客</a>
       </router-link>
       <router-link tag="li" to="/center">
-        <a>个人中心</a>
-      </router-link>
-      <router-link tag="li" to="/contact">
-        <a>联系我</a>
+        <a><i class="fa fa-user"></i>个人中心</a>
       </router-link>
       <router-link tag="li" to="/login">
-        <a>登录</a>
+        <a><i class="fa fa-sign-in"></i>登录</a>
       </router-link>
       <router-link tag="li" to="/register">
-        <a>注册</a>
+        <a><i class="fa fa-user-plus"></i>注册</a>
       </router-link>
     </ul>
   </div>
 </template>
 
 <script>
-import {setClass} from '../common/dom'
-import {mapGetters} from 'vuex'
+import {mapMutations, mapGetters} from 'vuex'
 
 export default {
   data () {
     return {
     }
   },
+  methods: {
+    slide: function () {
+      this.setSlide(false)
+    },
+    ...mapMutations({
+      setSlide: 'UPDATE_SLIDE_LEFT'
+    })
+  },
   // 计算属性函数获得状态
   computed: {
     ...mapGetters([
       'slideLeft'
     ])
-  },
-  // 监听slideLeft值改变然后绑定处理函数
-  watch: {
-    slideLeft: {
-      deep: true,
-      handler: function () {
-        let el = this.$refs.slideLeft
-        if (this.slideLeft) {
-          setClass('nav-left-show', el)
-        } else {
-          setClass('nav-left-hide', el)
-        }
-      }
-    }
   }
 }
 </script>
 
 <style scoped lang="less">
   .nav-left{
-    left: -260px;
     position: absolute;
     z-index: 999;
-    top:6vh;
-  }
-  .nav-lef-default{
+    top:8vh;
     left:-260px;
   }
   .nav-left-show{
-    animation:slideInLeft .5s linear;
+    animation:slideInLeft .3s linear;
     left: 0;
   }
   @keyframes slideInLeft {
@@ -80,7 +68,7 @@ export default {
     100%{left:0px}
   }
   .nav-left-hide{
-    animation:slideOutLeft .5s linear;
+    animation:slideOutLeft .3s linear;
     left: -260px;
   }
   @keyframes slideOutLeft {
@@ -156,6 +144,9 @@ export default {
   }
 
   .side-nav-panel li a {
+    display: inline-block;
+    width: 120px;
+    text-align: left;
     color: #fff;
     text-decoration: none;
     line-height: 40px;

@@ -7,11 +7,12 @@ import './assets/css/bootstrap.css'
 import './assets/font-awesome/css/font-awesome.min.css'
 import App from './App'
 import router from './router'
-import vuex from 'vuex'
+import fastclick from 'fastclick'
 import store from './store/index'
-Vue.use(vuex)
+
 Vue.config.productionTip = false
 
+fastclick.attach(document.body)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

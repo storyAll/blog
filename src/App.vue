@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <nav-top></nav-top>
     <nav-left></nav-left>
-    <keep-alive>
+    <keep-alive @click="slide">
       <router-view></router-view>
     </keep-alive>
   </div>
@@ -11,11 +11,21 @@
 <script>
 import NavTop from 'components/NavTop'
 import NavLeft from 'components/NavLeft'
+import {mapMutations} from 'vuex'
 export default {
   name: 'App',
   components: {
     NavTop,
     NavLeft
+  },
+  methods: {
+    slide: function () {
+      console.log(0)
+      this.slideLeft(false)
+    },
+    ...mapMutations({
+      slideLeft: 'UPDATE_SLIDE_LEFT'
+    })
   }
 }
 </script>
@@ -27,7 +37,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  /*margin-top: 60px;*/
 }
 ul li{
   list-style: none;

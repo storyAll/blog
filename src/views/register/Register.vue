@@ -34,15 +34,15 @@ export default {
 </script>
 
 <style scoped lang="less">
-  @font-color:#fff;
-  @width:70%;
+  @font-color:#000;
+  @width:60%;
   .pages{
     width: 100%;
     height: 100%;
     position: absolute;
     margin: 0 auto;
-    padding: 0;
-    background: url("../../assets/register.jpg") no-repeat;
+    padding: 8vh 0;
+    /*background: url("../../assets/register.jpg") no-repeat;*/
     background-size: cover;
     filter: blur(0px);
     .container{
@@ -53,14 +53,12 @@ export default {
       }
       .register{
         .input-field{
-          margin: 20px 0;
+          margin: 30px 0;
         }
         input.validate{
+          height: 35px;
           width: @width;
-          padding: 5px 10px;
-          border-radius: 5px;
-          border: none;
-          outline: none;
+          padding: 0 10px;
         }
         a,label{
           color: @font-color;
@@ -74,7 +72,7 @@ export default {
         }
         .rf{
           display: inline-block;
-          width: 70%;
+          width: @width;
           /*line-height: 30px;*/
           input,label{
             float: left;

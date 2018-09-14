@@ -1,5 +1,5 @@
 const state = {
-  slideLeft: false
+  slideLeft: null
 }
 
 export default state
