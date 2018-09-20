@@ -4,8 +4,8 @@
     <ul @click="slide" id="slide-out-left" class="side-nav side-nav-panel collapsible">
       <li class="profil">
         <img src="../assets/login.jpg" alt="">
-        <h2>张冲</h2>
-        <h6>前端开发</h6>
+        <h2>{{uname}}</h2>
+        <h6>{{postion}}</h6>
       </li>
       <router-link tag="li" to="/home">
         <a><i class="fa fa-home"></i>主页</a>
@@ -32,7 +32,11 @@ import {mapMutations, mapGetters} from 'vuex'
 export default {
   data () {
     return {
+      uname: sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')).username : '您未登录',
+      postion: sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')).job : ''
     }
+  },
+  created () {
   },
   methods: {
     slide: function () {
@@ -134,7 +138,6 @@ export default {
     margin-bottom: 5px;
     cursor: default;
     font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 1px;
   }
 

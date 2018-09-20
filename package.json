@@ -68,7 +68,8 @@
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0",
     "vuex": "^3.0.1",
-    "fastclick": "^1.0.6"
+    "fastclick": "^1.0.6",
+    "axios": "^0.18.0"
   },
   "engines": {
     "node": ">= 6.0.0",

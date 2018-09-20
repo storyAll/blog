@@ -1,5 +1,6 @@
 const state = {
-  slideLeft: null
+  slideLeft: null,
+  id: 0
 }
 
 export default state

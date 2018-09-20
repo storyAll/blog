@@ -8,20 +8,20 @@
       </div>
       <div class="login">
         <div class="row">
-          <form class="col s12">
+          <form class="col s12" :model="userInfo">
             <div class="input-field">
-              <input type="text" class="validate" placeholder="用户">
+              <input type="text" class="validate" v-model="userInfo.username" placeholder="用户">
             </div>
             <div class="input-field">
-              <input type="password" class="validate" placeholder="密码">
+              <input type="password" class="validate" v-model="userInfo.password" placeholder="密码">
             </div>
             <div class="input-field">
                 <div class="rf">
-                  <input type="checkbox" class="remember" id="remember"><label for="remember">记住密码</label>
+                  <input type="checkbox" v-model="userInfo.remember" class="remember" id="remember"><label for="remember">记住密码</label>
                   <a class="forget" href="javascript:void 0">忘记密码 ?</a>
                 </div>
             </div>
-            <a href="javascript:void 0" class="btn btn-success">登录</a>
+            <a href="javascript:void 0" @click="login" class="btn btn-success">登录</a>
           </form>
         </div>
       </div>
@@ -31,7 +31,61 @@
 
 <script>
 export default {
-  name: 'Login'
+  data () {
+    return {
+      userInfo: {
+        username: '',
+        password: '',
+        remember: false
+      }
+    }
+  },
+  created () {
+    this.initUserInfo()
+  },
+  methods: {
+    initUserInfo: function () {
+      // debugger
+      if (localStorage.remember === 'true') {
+        this.userInfo.username = localStorage.username
+        this.userInfo.password = localStorage.password
+        this.userInfo.remember = localStorage.remember
+      } else {
+        this.userInfo.username = ''
+        this.userInfo.password = ''
+        this.userInfo.remember = false
+        localStorage.removeItem('username')
+        localStorage.removeItem('password')
+        localStorage.removeItem('remember')
+      }
+    },
+    getRemember: function () {
+      if (!window.localStorage) {
+        alert('浏览器不支持localStorage')
+      } else {
+        return localStorage.getItem('user')
+      }
+    },
+    rememberPassword: function () {
+      localStorage.setItem('username', this.userInfo.username)
+      localStorage.setItem('password', this.userInfo.password)
+      localStorage.setItem('remember', this.userInfo.remember)
+    },
+    login: function () {
+      if (!window.localStorage) {
+        alert('浏览器不支持localStorage')
+      } else {
+        this.rememberPassword()
+      }
+      this.$store.dispatch('Login', this.userInfo)
+        .then(res => {
+          this.$router.push({path: '/'})
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  }
 }
 </script>
 
@@ -43,7 +97,6 @@ export default {
     position: absolute;
     margin: 0 auto;
     padding: 8vh 0;
-    /*background: url("../../assets/login.jpg") no-repeat;*/
     background-size: cover;
     filter: blur(0px);
     .container{

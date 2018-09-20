@@ -2,18 +2,21 @@
   <div class="blog">
     <div class="pages">
       <div class="container">
-        <div class="row">
+        <div class="row"  v-for="(item,index) in blogList" :key="index">
           <div class="col s12">
             <div class="blog-content">
-              <img width="100%" src="../../assets/sn.jpg" alt="">
+              <img width="100%" :src="item.imgUrl" alt="">
               <div class="blog-detail">
-                <h4><a href="">How To Design Fresh and Clean</a></h4>
+                <h4><a href="">{{item.title}}</a></h4>
                 <div class="date">
-                  <span><i class="fa fa-calendar"></i> July 22, 2016</span>
+                  <span><i class="fa fa-calendar"></i> {{item.releaseTime}}</span>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quasi sit aperiam quia voluptatem
-                  odio, facere iusto magni sunt, cumque quae, molestias temporibus ducimus repellendus!</p>
-                <div class="btn btn-default">Read More</div>
+                <p>{{item.content}}</p>
+                <div @click="getDetail(item.id)">
+                  <router-link tag="a" to="/blogDetail" class="btn btn-default">
+                    查看全部
+                  </router-link>
+                </div>
               </div>
             </div>
           </div>
@@ -24,8 +27,33 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
 export default {
-  name: 'Blog'
+  data () {
+    return {
+      blogList: []
+    }
+  },
+  created () {
+    this.getBlogList()
+  },
+  methods: {
+    getBlogList: function () {
+      this.$get('blog/findAll')
+        .then(res => {
+          this.blogList = res.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    getDetail: function (id) {
+      this.setId(id)
+    },
+    ...mapMutations({
+      setId: 'UPDATE_ID'
+    })
+  }
 }
 </script>
 

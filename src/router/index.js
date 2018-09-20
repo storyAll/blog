@@ -3,6 +3,7 @@ import Router from 'vue-router'
 // import Landing from 'views/landing/Landing'
 import Home from 'views/home/Home'
 import Blog from 'views/blog/Blog'
+import BlogDetail from 'views/blog/BlogDetail'
 import Center from 'views/center/Center'
 import Login from 'views/login/Login'
 import Register from 'views/register/Register'
@@ -34,6 +35,10 @@ export default new Router({
     {
       path: '/register',
       component: Register
+    },
+    {
+      path: '/blogDetail',
+      component: BlogDetail
     }
   ]
 })
