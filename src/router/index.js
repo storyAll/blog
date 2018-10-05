@@ -7,6 +7,7 @@ import BlogDetail from 'views/blog/BlogDetail'
 import Center from 'views/center/Center'
 import Login from 'views/login/Login'
 import Register from 'views/register/Register'
+import AddBlog from 'views/blog/AddBlog'
 
 Vue.use(Router)
 
@@ -39,6 +40,10 @@ export default new Router({
     {
       path: '/blogDetail',
       component: BlogDetail
+    },
+    {
+      path: '/addBlog',
+      component: AddBlog
     }
   ]
 })

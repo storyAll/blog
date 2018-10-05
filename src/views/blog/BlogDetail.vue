@@ -1,6 +1,8 @@
 <template>
     <div class="detail">
-      <h1></h1>
+      <h3>{{blogDetail.title}}</h3>
+      <h6>{{blogDetail.releaseTime}}</h6>
+      <p v-html="blogDetail.content"></p>
     </div>
 </template>
 
@@ -18,8 +20,8 @@ export default {
   methods: {
     getDetail: function () {
       this.$post('blog/queryById', {'id': this.id})
-        .then(res => {
-          this.blogData = res.data
+        .then((res) => {
+          this.blogDetail = res.data
         })
         .catch(err => {
           console.log(err)
@@ -39,6 +41,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+.detail{
+  padding-top: 8vh;
+}
 </style>

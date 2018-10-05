@@ -91,6 +91,9 @@ export default {
 
 <style scoped lang="less">
   @width:60%;
+  .message{
+    margin-top: 8vh;
+  }
   .pages{
     width: 100%;
     height: 100%;

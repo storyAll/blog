@@ -1,28 +1,31 @@
 <template>
-  <div ref="slideLeft" class="side-nav-panel-left nav-left"
-       :class="slideLeft==null?'':slideLeft?'nav-left-show':'nav-left-hide'">
-    <ul @click="slide" id="slide-out-left" class="side-nav side-nav-panel collapsible">
-      <li class="profil">
-        <img src="../assets/login.jpg" alt="">
-        <h2>{{uname}}</h2>
-        <h6>{{postion}}</h6>
-      </li>
-      <router-link tag="li" to="/home">
-        <a><i class="fa fa-home"></i>主页</a>
-      </router-link>
-      <router-link tag="li" to="/blog">
-        <a><i class="fa fa-bold"></i>博客</a>
-      </router-link>
-      <router-link tag="li" to="/center">
-        <a><i class="fa fa-user"></i>个人中心</a>
-      </router-link>
-      <router-link tag="li" to="/login">
-        <a><i class="fa fa-sign-in"></i>登录</a>
-      </router-link>
-      <router-link tag="li" to="/register">
-        <a><i class="fa fa-user-plus"></i>注册</a>
-      </router-link>
-    </ul>
+  <div @wheel.prevent>
+    <div :class="slideLeft? 'modelBox': ''" @click="slide"></div>
+    <v-touch @swipeleft="slide" ref="slideLeft" class="side-nav-panel-left nav-left"
+         :class="slideLeft==null?'':slideLeft?'nav-left-show':'nav-left-hide'">
+      <ul @click="slide" id="slide-out-left" class="side-nav side-nav-panel collapsible">
+        <li class="profil">
+          <img src="../assets/head.jpg" alt="">
+          <h2>{{getUsername}}</h2>
+          <h6>{{getPosition}}</h6>
+        </li>
+        <router-link tag="li" to="/home">
+          <a><i class="fa fa-home"></i>主页</a>
+        </router-link>
+        <router-link tag="li" to="/blog">
+          <a><i class="fa fa-bold"></i>博客</a>
+        </router-link>
+        <router-link tag="li" to="/center">
+          <a><i class="fa fa-user"></i>个人中心</a>
+        </router-link>
+        <router-link tag="li" to="/login" :class="isLogin?'hide' : '' ">
+          <a><i class="fa fa-sign-in"></i>登录</a>
+        </router-link>
+        <router-link tag="li" to="/register" :class="isLogin?'hide' : '' ">
+          <a><i class="fa fa-user-plus"></i>注册</a>
+        </router-link>
+      </ul>
+    </v-touch>
   </div>
 </template>
 
@@ -32,8 +35,8 @@ import {mapMutations, mapGetters} from 'vuex'
 export default {
   data () {
     return {
-      uname: sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')).username : '您未登录',
-      postion: sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')).job : ''
+      // uname: sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')).username : '您未登录',
+      // postion: sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')).job : ''
     }
   },
   created () {
@@ -48,8 +51,26 @@ export default {
   },
   // 计算属性函数获得状态
   computed: {
+    isLogin: function () {
+      return this.user ? this.user.token : false
+    },
+    getUsername: function () {
+      if (this.user.token) {
+        return sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')).username : '您未登录'
+      } else {
+        return ''
+      }
+    },
+    getPosition: function () {
+      if (this.user.token) {
+        return sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')).job : ''
+      } else {
+        return ''
+      }
+    },
     ...mapGetters([
-      'slideLeft'
+      'slideLeft',
+      'user'
     ])
   }
 }
@@ -61,6 +82,14 @@ export default {
     z-index: 999;
     top:8vh;
     left:-260px;
+  }
+  .modelBox{
+    background-color: rgba(0, 0, 0, 0.47);
+    width: 100%;
+    height: 92vh;
+    position: absolute;
+    opacity: .4;
+    z-index: 10;
   }
   .nav-left-show{
     animation:slideInLeft .3s linear;
@@ -84,7 +113,7 @@ export default {
      width: 260px;
      margin: 0;
      padding:0;
-      height: 94vh;
+      height: 92vh;
    }
 
   .side-nav a {

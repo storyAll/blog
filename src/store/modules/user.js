@@ -6,7 +6,7 @@ const user = {
   state: {
     username: '',
     user: {},
-    token: ''
+    token: false
   },
   mutations: {
     [types.SET_USER] (state, res) {
@@ -20,6 +20,13 @@ const user = {
     [types.SET_TOKEN] (state, token) {
       state.token = token
       setToken(token)
+    },
+    [types.LOGOUT] (state) {
+      state.user = {}
+      state.username = ''
+      state.token = false
+      sessionStorage.removeItem('user')
+      sessionStorage.removeItem('token')
     }
   },
   actions: {

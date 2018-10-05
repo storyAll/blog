@@ -3,7 +3,7 @@ import qs from 'qs'
 import {Message, MessageBox} from 'element-ui'
 import store from '../store'
 const service = axios.create({
-
+  baseURL: 'http://www.onlineshows.cn/blogBack/',
   timeout: 15000
 
 })
@@ -47,6 +47,7 @@ service.interceptors.response.use(
   error => {
     Message({
       message: error.message,
+      customClass: 'message',
       type: 'error',
       duration: 5 * 1000
     })

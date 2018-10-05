@@ -11,7 +11,7 @@
                 <div class="date">
                   <span><i class="fa fa-calendar"></i> {{item.releaseTime}}</span>
                 </div>
-                <p>{{item.content}}</p>
+                <p v-html="item.content"></p>
                 <div @click="getDetail(item.id)">
                   <router-link tag="a" to="/blogDetail" class="btn btn-default">
                     查看全部
@@ -23,6 +23,9 @@
         </div>
       </div>
     </div>
+    <router-link tag="div" to="/addBlog">
+      <a><i class="el-icon-circle-plus add-blog"></i></a>
+    </router-link>
   </div>
 </template>
 
@@ -41,7 +44,8 @@ export default {
     getBlogList: function () {
       this.$get('blog/findAll')
         .then(res => {
-          this.blogList = res.data
+          this.blogList = res.data.reverse()
+          console.log(this.blogList)
         })
         .catch(err => {
           console.log(err)
@@ -61,8 +65,17 @@ export default {
   .blog {
     margin-top: 8vh;
     text-align: left;
+    .add-blog{
+      position: fixed;
+      right: 20px;
+      bottom: 5vh;
+      font-size: 38px;
+      color: #2aabd2;
+      background-color: #fff;
+      border-radius: 50%;
+    }
     .pages {
-      padding: 0 20px;
+      /*padding: 0 20px;*/
       .blog-content{
         padding: 20px;
         .blog-detail {

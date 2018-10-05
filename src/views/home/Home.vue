@@ -1,12 +1,14 @@
 <template>
 <div class="home">
-  <h1>Home</h1>
+  <h1>欢迎来到燕蝉枫雪的博客系统</h1>
 </div>
 </template>
 
 <script>
 export default {
-  created () {
+  data () {
+    return {
+    }
   }
 }
 </script>
@@ -14,5 +16,7 @@ export default {
 <style scoped lang="less">
 .home{
   margin-top: 8vh;
+  text-align: left;
+  padding: 20px;
 }
 </style>

@@ -7,7 +7,9 @@
       <a href="index.html"><h1>燕蝉枫雪</h1></a>
     </div>
     <div class="side-nav-panel-right">
-      <a href="" class="side-nav-right"><i class="fa fa-envelope"></i></a>
+      <a href="" class="side-nav-right">
+        <i class="fa" :class="isLogin?'fa-sign-out':''" aria-hidden="true" @click="clearData"></i>
+      </a>
     </div>
   </div>
 </template>
@@ -21,16 +23,25 @@ export default {
     }
   },
   methods: {
+    clearData: function () {
+      this.logout()
+      this.$router.push('/home')
+    },
     slide: function () {
       this.setSlide(!this.slideLeft)
     },
     ...mapMutations({
-      setSlide: 'UPDATE_SLIDE_LEFT'
+      setSlide: 'UPDATE_SLIDE_LEFT',
+      logout: 'LOGOUT'
     })
   },
   computed: {
+    isLogin: function () {
+      return this.user ? this.user.token : false
+    },
     ...mapGetters([
-      'slideLeft'
+      'slideLeft',
+      'user'
     ])
   }
 }

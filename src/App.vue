@@ -12,8 +12,19 @@
 import NavTop from 'components/NavTop'
 import NavLeft from 'components/NavLeft'
 import {mapMutations} from 'vuex'
+window.addEventListener('beforeunload', (res) => {
+  sessionStorage.setItem('store', JSON.stringify(this.$store.state))
+})
 export default {
   name: 'App',
+  created () {
+    if (sessionStorage.getItem('store')) {
+      this.$store.replaceState(Object.assign({},
+        this.$store.state,
+        JSON.parse(sessionStorage.getItem('store'))
+      ))
+    }
+  },
   components: {
     NavTop,
     NavLeft

@@ -8,18 +8,18 @@
         <div class="row">
           <form class="col s12">
             <div class="input-field">
-              <input type="text" class="validate" placeholder="用户名" required>
+              <input type="text" class="validate" v-model="username" placeholder="用户名" required>
             </div>
             <div class="input-field">
-              <input type="email" placeholder="邮箱" class="validate" required>
+              <input type="email" v-model="email" placeholder="邮箱" class="validate" required>
             </div>
             <div class="input-field">
-              <input type="password" placeholder="密码" class="validate" required>
+              <input type="password" v-model="password" placeholder="密码" class="validate" required>
             </div>
             <div class="input-field">
-              <input type="password" placeholder="确认密码" class="validate" required>
+              <input type="password" v-model="repeat" placeholder="确认密码" class="validate" required>
             </div>
-            <div class="btn btn-danger">注册</div>
+            <div class="btn btn-danger" @click="addUser">注册</div>
           </form>
         </div>
       </div>
@@ -28,8 +28,35 @@
 </template>
 
 <script>
+import {MessageBox} from 'element-ui'
 export default {
-  name: 'Register'
+  name: 'Register',
+  data () {
+    return {
+      username: '',
+      email: '',
+      password: '',
+      repeat: ''
+    }
+  },
+  methods: {
+    addUser: function () {
+      this.$post('user/addUser', {
+        'username': this.username,
+        'email': this.email,
+        'password': this.password
+      }).then(res => {
+        if (res.code === 200) {
+          MessageBox.alert('注册成功请登录！')
+          this.$router.push('/login')
+        } else {
+          MessageBox.alert('注册失败请重新注册！')
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+  }
 }
 </script>
 
@@ -42,7 +69,6 @@ export default {
     position: absolute;
     margin: 0 auto;
     padding: 8vh 0;
-    /*background: url("../../assets/register.jpg") no-repeat;*/
     background-size: cover;
     filter: blur(0px);
     .container{
